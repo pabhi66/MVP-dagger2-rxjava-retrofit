@@ -1,7 +1,10 @@
 package com.abhi.mvp.ui.main;
 
+import com.abhi.mvp.data.model.Post;
 import com.abhi.mvp.ui.base.BaseMvpPresenter;
 import com.abhi.mvp.ui.base.BaseView;
+
+import java.util.List;
 
 /**
  * @author Abhishek Prajapati
@@ -18,11 +21,15 @@ public class MainContract {
 
     // Action callbacks. Activity/Fragment will implement
     interface Presenter extends BaseMvpPresenter<View> {
-
+        void loadPosts();
     }
 
     // Action callbacks. Activity/Fragment will implement
     interface View extends BaseView {
+        void showPosts(List<Post> posts);
 
+        void showError(String message);
+
+        void showComplete();
     }
 }

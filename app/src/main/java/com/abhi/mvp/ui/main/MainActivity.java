@@ -4,7 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.abhi.mvp.R;
+import com.abhi.mvp.data.model.Post;
 import com.abhi.mvp.ui.base.BaseActivity;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity implements MainContract.View {
 
@@ -28,5 +31,20 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @Override
     protected void detachPresenter() {
         mainPresenter.detachView();
+    }
+
+    @Override
+    public void showPosts(List<Post> posts) {
+        
+    }
+
+    @Override
+    public void showError(String message) {
+
+    }
+
+    @Override
+    public void showComplete() {
+
     }
 }

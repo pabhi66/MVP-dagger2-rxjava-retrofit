@@ -2,6 +2,8 @@ package com.abhi.mvp.data.api;
 
 import com.abhi.mvp.data.model.Post;
 
+import java.util.List;
+
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -12,10 +14,10 @@ import retrofit2.http.Path;
  * @since 12/12/17.
  */
 
-public interface getPostService {
+public interface PostServicesInterface {
 
     @GET("/posts")
-    Single<Post> getPosts();
+    Single<List<Post>> getPosts();
 
     @GET("/posts/{id}")
     Single<Post> getPost(@Path("id") int id);
