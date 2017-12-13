@@ -17,7 +17,7 @@ import java.util.List;
  *      show connection error etc.)
  */
 
-public class MainContract {
+class MainContract {
 
     // Action callbacks. Activity/Fragment will implement
     interface Presenter extends BaseMvpPresenter<View> {
@@ -28,7 +28,7 @@ public class MainContract {
     interface View extends BaseView {
         void showPosts(List<Post> posts);
 
-        void showError(String message);
+        void showError(Throwable error);
 
         void showComplete();
     }

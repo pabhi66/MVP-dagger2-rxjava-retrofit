@@ -17,7 +17,7 @@ import retrofit2.http.Path;
 public interface PostServicesInterface {
 
     @GET("/posts")
-    Single<List<Post>> getPosts();
+    Single<Post> getPosts();
 
     @GET("/posts/{id}")
     Single<Post> getPost(@Path("id") int id);

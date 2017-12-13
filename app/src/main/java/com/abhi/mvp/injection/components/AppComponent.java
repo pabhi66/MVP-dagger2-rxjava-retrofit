@@ -3,9 +3,9 @@ package com.abhi.mvp.injection.components;
 import android.app.Application;
 import android.content.Context;
 
+import com.abhi.mvp.data.DataManager;
 import com.abhi.mvp.injection.modules.AppModule;
 import com.abhi.mvp.injection.scopes.ApplicationContext;
-
 import javax.inject.Singleton;
 import dagger.Component;
 
@@ -23,5 +23,7 @@ public interface AppComponent {
     Context context();
 
     Application application();
+
+    DataManager apiManager();
 
 }

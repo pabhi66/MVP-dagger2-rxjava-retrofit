@@ -1,5 +1,7 @@
 package com.abhi.mvp.ui.base;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 /**
  * @author Abhishek Prajapati
  * @version 1.0.0
@@ -15,6 +17,7 @@ package com.abhi.mvp.ui.base;
 
 public class BasePresenter<V extends BaseView> implements BaseMvpPresenter<V> {
 
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     private V view;
 
     @Override
@@ -25,6 +28,9 @@ public class BasePresenter<V extends BaseView> implements BaseMvpPresenter<V> {
     @Override
     public void detachView() {
         view = null;
+        if (!compositeDisposable.isDisposed()) {
+            compositeDisposable.clear();
+        }
     }
 
     @Override

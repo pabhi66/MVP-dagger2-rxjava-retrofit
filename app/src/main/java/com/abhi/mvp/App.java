@@ -4,7 +4,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.abhi.mvp.injection.components.AppComponent;
+import com.abhi.mvp.injection.components.DaggerAppComponent;
 import com.abhi.mvp.injection.modules.AppModule;
+import com.abhi.mvp.injection.modules.NetworkModule;
 import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;
@@ -33,7 +35,7 @@ public class App extends Application {
         }
 
         appComponent = DaggerAppComponent.builder()
-                .networkModule()
+                .networkModule(new NetworkModule(this))
                 .appModule(new AppModule(this))
                 .build();
     }

@@ -5,12 +5,16 @@ import android.os.Bundle;
 
 import com.abhi.mvp.R;
 import com.abhi.mvp.data.model.Post;
+import com.abhi.mvp.injection.components.ActivityComponent;
 import com.abhi.mvp.ui.base.BaseActivity;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainActivity extends BaseActivity implements MainContract.View {
 
+    @Inject
     MainPresenter mainPresenter;
 
     @Override
@@ -34,12 +38,17 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     }
 
     @Override
-    public void showPosts(List<Post> posts) {
-        
+    protected void inject(ActivityComponent activityComponent) {
+        activityComponent.inject(this);
     }
 
     @Override
-    public void showError(String message) {
+    public void showPosts(List<Post> posts) {
+
+    }
+
+    @Override
+    public void showError(Throwable error) {
 
     }
 

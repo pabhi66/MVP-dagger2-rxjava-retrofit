@@ -1,6 +1,7 @@
 package com.abhi.mvp.injection.modules;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
@@ -28,7 +29,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
-    public NetworkModule() {}
+    private final Context context;
+
+    public NetworkModule(final Context context) {
+        this.context = context;
+    }
 
     private String getBaseUrl() {
         return BuildConfig.API_URL;
@@ -36,23 +41,17 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    Cache provideHttpCache(Application application) {
-        int cacheSize = 10 * 1024 * 1024;  // 10MB
-        return new Cache(application.getCacheDir(), cacheSize);
-    }
-    @Provides
-    @Singleton
     Gson provideGson() {
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        return gsonBuilder.create();
+        return new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .create();
     }
 
     @Provides
     @Singleton
-    OkHttpClient provideOkhttpClient(Cache cache) {
+    OkHttpClient provideOkhttpClient() {
         OkHttpClient.Builder client = new OkHttpClient.Builder();
-        client.cache(cache);
         return client.build();
     }
 
