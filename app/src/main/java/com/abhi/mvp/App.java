@@ -33,14 +33,15 @@ public class App extends Application {
             Timber.plant(new Timber.DebugTree());
             LeakCanary.install(this);
         }
-
-        appComponent = DaggerAppComponent.builder()
-                .networkModule(new NetworkModule(this))
-                .appModule(new AppModule(this))
-                .build();
     }
 
     public AppComponent getAppComponent() {
+        if (appComponent == null) {
+            appComponent = DaggerAppComponent.builder()
+                    .networkModule(new NetworkModule(this))
+                    .appModule(new AppModule(this))
+                    .build();
+        }
         return appComponent;
     }
 

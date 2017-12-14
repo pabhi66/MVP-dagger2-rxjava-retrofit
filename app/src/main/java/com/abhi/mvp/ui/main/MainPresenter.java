@@ -1,6 +1,7 @@
 package com.abhi.mvp.ui.main;
 
 import com.abhi.mvp.data.DataManager;
+import com.abhi.mvp.data.model.Post;
 import com.abhi.mvp.ui.base.BasePresenter;
 
 import javax.inject.Inject;
@@ -27,6 +28,17 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
     @Override
     public void loadPosts() {
+
+        checkViewAttached();
+        dataManager
+                .getPosts()
+                .subscribe(posts -> {
+                    for(Post post : posts) {
+                        System.out.println(post);
+                    }
+                }, throwable -> {
+
+                });
 
     }
 }

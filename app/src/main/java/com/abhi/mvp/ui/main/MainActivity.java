@@ -20,6 +20,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mainPresenter.loadPosts();
     }
 
     @Override
