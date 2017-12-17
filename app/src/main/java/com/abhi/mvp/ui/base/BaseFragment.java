@@ -26,7 +26,7 @@ import timber.log.Timber;
  *
  * @author Abhishek Prajapati
  * @version 1.0.0
- * @since 12 /16/17.
+ * @since 12/16/17.
  */
 public abstract class BaseFragment extends Fragment {
 
@@ -75,28 +75,12 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
-    /**
-     * Gets layout.
-     *
-     * @return the layout
-     */
     protected abstract int getLayout();
 
-    /**
-     * Inject.
-     *
-     * @param fragmentComponent the fragment component
-     */
     protected abstract void inject(FragmentComponent fragmentComponent);
 
-    /**
-     * Attach view.
-     */
     protected abstract void attachView();
 
-    /**
-     * Detach presenter.
-     */
     protected abstract void detachPresenter();
 
     @Override

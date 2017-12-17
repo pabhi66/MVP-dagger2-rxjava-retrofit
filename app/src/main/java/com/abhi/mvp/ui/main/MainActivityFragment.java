@@ -1,22 +1,18 @@
 package com.abhi.mvp.ui.main;
 
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 import com.abhi.mvp.R;
 import com.abhi.mvp.data.response.Post;
 import com.abhi.mvp.injection.components.FragmentComponent;
 import com.abhi.mvp.ui.base.BaseFragment;
-
 import java.util.List;
-
 import javax.inject.Inject;
-
-import butterknife.ButterKnife;
+import butterknife.BindView;
+import io.reactivex.disposables.Disposable;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -24,18 +20,24 @@ import butterknife.ButterKnife;
 public class MainActivityFragment extends BaseFragment implements MainContract.View {
 
     @Inject
+    PostsAdapter postsAdapter;
+
+    @Inject
     MainPresenter mainPresenter;
+
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
 
     public MainActivityFragment() {
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(getLayout(), container, false);
-        ButterKnife.bind(this, view);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(postsAdapter);
+        postClicked();
         mainPresenter.getPosts();
-        return view;
     }
 
     @Override
@@ -60,9 +62,7 @@ public class MainActivityFragment extends BaseFragment implements MainContract.V
 
     @Override
     public void showPosts(List<Post> posts) {
-        for(Post p : posts) {
-            System.out.println(p.getTitle());
-        }
+        postsAdapter.setPosts(posts);
     }
 
     @Override
@@ -73,5 +73,19 @@ public class MainActivityFragment extends BaseFragment implements MainContract.V
     @Override
     public void showError(Throwable error) {
 
+    }
+
+    @Override
+    public void postClicked() {
+        Disposable disposable =
+                postsAdapter.getPostClick()
+                    .subscribe(post -> {
+                        Toast.makeText(getContext(), post.getTitle(), Toast.LENGTH_SHORT).show();
+                        // to start new activity
+                        // startActivity(DetailActivity.getStartIntent(this, post)),
+                    }, throwable -> {
+                        Toast.makeText(getContext(), throwable.toString(), Toast.LENGTH_SHORT).show();
+                    });
+        mainPresenter.addDisposable(disposable);
     }
 }

@@ -4,15 +4,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.TextView;
 import com.abhi.mvp.R;
 import com.abhi.mvp.data.response.Post;
-
 import java.util.Collections;
 import java.util.List;
-
 import javax.inject.Inject;
-
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
@@ -43,7 +41,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
     @Override
     public PostViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main, parent, false);
+                .inflate(R.layout.posts_list, parent, false);
         return new PostViewHolder(view);
     }
 
@@ -64,6 +62,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
 
     class PostViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.post_title)
+        TextView postTitle;
+
         private Post post;
 
         public PostViewHolder(View itemView) {
@@ -74,7 +75,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
 
         void onBind(Post post) {
             this.post = post;
-
+            postTitle.setText(this.post.getTitle());
         }
     }
 }

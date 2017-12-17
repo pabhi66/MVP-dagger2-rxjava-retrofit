@@ -22,6 +22,8 @@ class MainContract {
         void showProgress(boolean show);
 
         void showError(Throwable error);
+
+        void postClicked();
     }
 
     interface Presenter extends com.abhi.mvp.ui.base.Presenter<View> {

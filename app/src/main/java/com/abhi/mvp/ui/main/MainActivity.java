@@ -12,7 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
