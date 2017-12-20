@@ -126,22 +126,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-<!-- code_chunk_output -->
-
-* [Android Mvp Starter](#android-mvp-starter)
-	* [This project uses:](#this-project-uses)
-	* [Create new project using yeoman This Project heavely uses yeoman mvp stater generator](#create-new-project-using-yeoman-this-project-heavely-uses-yeoman-mvp-stater-generatorhttpsgithubcomandroidstartersgenerator-android-mvp-starter)
-	* [Building](#building)
-	* [Testing](#testing)
-	* [Code Analysis tools](#code-analysis-tools)
-	* [The check task](#the-check-task)
-	* [Jacoco Reports](#jacoco-reports)
-			* [Generate Jacoco coverage reports for the Debug build. Only unit tests.](#generate-jacoco-coverage-reports-for-the-debug-build-only-unit-tests)
-			* [Generate Jacoco coverage reports for the Release build. Only unit tests.](#generate-jacoco-coverage-reports-for-the-release-build-only-unit-tests)
-			* [Generate Jacoco coverage reports for the Debug build. Both unit and espresso tests.](#generate-jacoco-coverage-reports-for-the-debug-build-both-unit-and-espresso-tests)
-			* [Generate Jacoco coverage reports for the Release build. Both unit and espresso tests.](#generate-jacoco-coverage-reports-for-the-release-build-both-unit-and-espresso-tests)
-	* [License](#license)
-
-<!-- /code_chunk_output -->
